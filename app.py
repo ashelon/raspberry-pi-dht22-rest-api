@@ -3,11 +3,12 @@ import sys
 import optparse
 import datetime
 import Adafruit_DHT
+from importlib import reload
 from flask import Flask, jsonify
 
 app = Flask(__name__)
-sensor_name = 'Sensor'
-gpio_pin = 4
+sensor_name = 'Atelier'
+gpio_pin = 10
 
 last_measurement = (None, None)
 last_measurement_time = None
@@ -98,6 +99,4 @@ def get_temperature_and_humidity():
 
 if __name__ == '__main__':
     reload(sys)
-    sys.setdefaultencoding('utf-8')
-
-    flaskrun(app)
+    flaskrun(app, default_host='0.0.0.0')
